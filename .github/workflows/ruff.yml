@@ -17,6 +17,10 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
+      - uses: DavidAnson/markdownlint-cli2-action@v14
+        with:
+          fix: true
+          globs: '**/*.md'
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
