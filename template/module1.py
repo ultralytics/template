@@ -12,7 +12,7 @@ def some_function_with_a_long_name(
     one_last_argument,
 ):
     x = "string1"
-    y = "string2"
+    y = 'string2'
     z = x + y
 
     return z
