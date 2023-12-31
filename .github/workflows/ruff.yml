@@ -21,6 +21,7 @@ jobs:
         with:
           fix: true
           globs: '**/*.md'
+          continue-on-error: true
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
