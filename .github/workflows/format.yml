@@ -2,7 +2,7 @@
 # Ultralytics Format Workflow
 # This workflow automatically formats code and documentation in pull requests and pushes to main branch
 
-name: Ultralytics Format
+name: Ultralytics Actions
 
 on:
   push:
@@ -19,4 +19,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Ultralytics Formatting Action
-        uses: ultralytics/action@main
+        uses: ultralytics/actions@main
