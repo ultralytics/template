@@ -18,6 +18,4 @@ def some_function_with_a_long_name(
     return z
 
 
-result = some_function_with_a_long_name(
-    1, 2, 3, 4, 5, 6
-)
+result = some_function_with_a_long_name(1, 2, 3, 4, 5, 6)
