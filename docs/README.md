@@ -15,7 +15,7 @@ This directory contains the documentation for our project, managed with MkDocs.
 To work with the documentation:
 
 1. **Install MkDocs:** Ensure MkDocs is installed in your environment.
-2. **Preview Documentation:** Run `mkdocs serve` to start a local server and preview the documentation in your browser.
-3. **Build Documentation:** Use `mkdocs build` to generate the static site.
+1. **Preview Documentation:** Run `mkdocs serve` to start a local server and preview the documentation in your browser.
+1. **Build Documentation:** Use `mkdocs build` to generate the static site.
 
 The documentation should be kept up-to-date with the project's development, ensuring clarity and usefulness for both internal developers and external users.

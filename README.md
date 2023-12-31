@@ -60,10 +60,10 @@ For projects requiring extensive documentation, the `docs/` directory serves as 
 To kickstart a new Python project with this template:
 
 1. **Create Your New Repository**: Use this template to generate a new repository for your project.
-2. **Customize the Template**: Tailor the template files like `requirements.txt`, `.pre-commit-config.yaml`, and GitHub workflow YAMLs to suit your project's needs.
-3. **Develop Your Package**: Begin adding your code into the `src/` or `your_package_name/` directory and corresponding tests in the `tests/` directory.
-4. **Document Your Project**: Update the README and, if necessary, add documentation to the `docs/` directory.
-5. **Continuous Integration**: Leverage the pre-configured GitHub Actions for automated testing and other CI/CD processes.
+1. **Customize the Template**: Tailor the template files like `requirements.txt`, `.pre-commit-config.yaml`, and GitHub workflow YAMLs to suit your project's needs.
+1. **Develop Your Package**: Begin adding your code into the `src/` or `your_package_name/` directory and corresponding tests in the `tests/` directory.
+1. **Document Your Project**: Update the README and, if necessary, add documentation to the `docs/` directory.
+1. **Continuous Integration**: Leverage the pre-configured GitHub Actions for automated testing and other CI/CD processes.
 
 ## 🔧 Utilizing the Template
 
