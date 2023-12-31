@@ -1,7 +1,8 @@
 # Ultralytics 🚀, AGPL-3.0 license
-# Ruff formatting action https://github.com/astral-sh/ruff
+# Ultralytics Format Workflow
+# This workflow automatically formats code and documentation in pull requests and pushes to main branch
 
-name: Ruff Format
+name: Ultralytics Format
 
 on:
   push:
@@ -11,24 +12,11 @@ on:
 
 jobs:
   format:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Specifies that the job should run on the latest version of Ubuntu
+
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.x"
-      - name: Install Ruff
-        run: pip install ruff
-      - name: Run Ruff Format
-        run: ruff format .
-      - name: Commit and Push Changes
-        run: |
-          git config --global user.name "glenn-jocher"
-          git config --global user.email "glenn.jocher@ultralytics.com"
-          git add -A
-          git commit -m "Apply ruff formatting" || echo "No changes to commit"
-          git push
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Ultralytics Formatting Action
+        uses: ultralytics/action@main
