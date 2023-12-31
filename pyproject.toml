@@ -83,4 +83,4 @@ package-data = { "sample" = ["*.yaml"] }
 version = { attr = "template.__version__" }
 
 [tool.ruff]
-line-length = 120
+line-length = 30
