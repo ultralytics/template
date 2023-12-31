@@ -25,7 +25,7 @@ build-backend = "setuptools.build_meta"
 # Project settings -----------------------------------------------------------------------------------------------------
 [project]
 name = "template"  # Required
-version = "0.0.0"  # Required
+dynamic = ["version"]
 description = "Ultralytics Template Python Package"  # Optional
 readme = "README.md"  # Optional
 requires-python = ">=3.8"
@@ -75,8 +75,12 @@ tests = ["pytest"]
 # sample = "sample:main"  # executes the function `main` from this package when "sample" is called.
 
 # Tools settings -------------------------------------------------------------------------------------------------------
-[tool.setuptools]  # This is configuration specific to the `setuptools` build backend.
+[tool.setuptools]  # configuration specific to the `setuptools` build backend.
+packages = { find = { where = ["."], include = ["template", "template.*"] } }
 package-data = { "sample" = ["*.yaml"] }
+
+[tool.setuptools.dynamic]
+version = { attr = "template.__version__" }
 
 [tool.ruff]
 line-length = 120
