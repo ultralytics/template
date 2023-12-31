@@ -10,6 +10,7 @@ def some_function_with_a_long_name(argument1, argument2, another_argument, yet_a
 
     return z
 
+
 def get_git_dir():
     """
     Determines whether the current file is part of a git repository and if so, returns the repository root directory. If the current file is not part of a git repository, returns None.
@@ -20,7 +21,8 @@ def get_git_dir():
     from pathlib import Path
 
     for d in Path(__file__).parents:
-        if (d / '.git').is_dir():
+        if (d / ".git").is_dir():
             return d
+
 
 result = some_function_with_a_long_name(1, 2, 3, 4)
