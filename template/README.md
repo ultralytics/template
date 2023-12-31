@@ -1,7 +1,7 @@
 <br>
 <img src="https://raw.githubusercontent.com/ultralytics/assets/main/logo/Ultralytics_Logotype_Original.svg" width="320">
 
-# Source Code Directory (`/template`)
+# Source Code Directory (`src/` or `your_package_name/`)
 
 The root directory of this project serves as the container for the Python source code.
 
