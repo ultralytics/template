@@ -12,7 +12,7 @@ on:
 
 jobs:
   format:
-    runs-on: ubuntu-latest  # Specifies that the job should run on the latest version of Ubuntu
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
