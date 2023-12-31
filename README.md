@@ -22,6 +22,27 @@ The repository is meticulously organized to offer intuitive navigation and a cle
 - `setup.py`: (Optional, if using PyPI) Details for packaging and distributing the project.
 - Linting and formatting configuration files (like `.flake8`, `.pylintrc`, `pyproject.toml`).
 
+```
+your-project/
+│
+├── your_package_name/
+│   ├── __init__.py
+│   ├── module1.py
+│   ├── module2.py
+│   └── ...
+│
+├── tests/
+│   ├── __init__.py
+│   ├── test_module1.py
+│   └── ...
+│
+├── docs/
+│   └── ...
+│
+├── pyproject.toml
+└── README.md
+```
+
 ### Source Code in `src/` Directory 📂
 
 The `src/` directory is the heart of your project, containing the Python code that constitutes your package. This structure encourages clean imports and testing practices.
