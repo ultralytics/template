@@ -1,5 +1,9 @@
 def add_numbers(a, b):
-    """Add two numbers."""
+    """
+
+    Add two numbers.
+
+    """
     return a + b
 
 def some_function_with_a_long_name(argument1, argument2, another_argument, yet_another_argument, one_more_argument, one_last_argument):
