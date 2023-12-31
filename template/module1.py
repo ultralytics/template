@@ -6,7 +6,7 @@ def add_numbers(a, b):
 
 def some_function_with_a_long_name(argument1, argument2, another_argument, yet_another_argument):
     x = "string1"
-    y = "string2"
+    y  =  "string2"
     z = x + y
 
     return z
