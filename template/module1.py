@@ -1,5 +1,6 @@
 def add_numbers(a, b):
-    """Add two numbes."""
+
+    """Add two numbers."""
 
     return a + b
 
@@ -25,6 +26,3 @@ def get_git_dir():
     for d in Path(__file__).parents:
         if (d / ".git").is_dir():
             return d
-
-
-result = some_function_with_a_long_name(1, 2, 3, 4)
