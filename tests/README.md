@@ -16,6 +16,6 @@ This directory houses the tests for our project, primarily using pytest for test
 To execute the tests:
 
 1. **Install pytest:** Ensure pytest is installed in your environment.
-2. **Run Tests:** Execute `pytest` in the root directory of the project.
+1. **Run Tests:** Execute `pytest` in the root directory of the project.
 
 Make sure to regularly run tests to maintain the reliability and quality of the project.
