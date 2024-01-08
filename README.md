@@ -5,6 +5,8 @@
 
 This repository serves as the template for Python projects at [Ultralytics](https://ultralytics.com). It encapsulates best practices, standard configurations, and essential project structures, streamlining the initiation process for new Python projects. By leveraging this template, developers at Ultralytics can ensure consistency and adherence to quality standards across all Python-based software developments.
 
+[![Ultralytics Actions](https://github.com/ultralytics/template/actions/workflows/format.yml/badge.svg)](https://github.com/ultralytics/template/actions/workflows/format.yml)
+
 ## 🗂 Repository Structure
 
 The repository is meticulously organized to offer intuitive navigation and a clear understanding of the project components:
