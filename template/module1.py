@@ -1,3 +1,5 @@
+# Ultralytics YOLO 🚀, AGPL-3.0 license
+
 def add_numbers(a, b):
     """Add two numbers."""
 
