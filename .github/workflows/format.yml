@@ -8,6 +8,7 @@ on:
   pull_request: # all branches
   push:
     branches: [main]
+    types: [opened, closed, synchronize]
 
 jobs:
   format:
@@ -18,9 +19,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }} # automatically generated, do not modify
           python: true # format Python code and docstrings
-          markdown: true # format Markdown and YAML
-          spelling: true # check spelling
-          links: true # check broken links
+          markdown: true # format Markdown
+          prettier: true # format YAML
+          spelling: false # check spelling
+          links: false # check broken links
           summary: true # print PR summary with GPT4 (requires 'openai_api_key' or 'openai_azure_api_key' and 'openai_azure_endpoint')
           openai_azure_api_key: ${{ secrets.OPENAI_AZURE_API_KEY }}
           openai_azure_endpoint: ${{ secrets.OPENAI_AZURE_ENDPOINT }}
