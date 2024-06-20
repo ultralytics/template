@@ -6,6 +6,8 @@ This repository serves as the template for Python projects at [Ultralytics](http
 
 [![Ultralytics Actions](https://github.com/ultralytics/template/actions/workflows/format.yml/badge.svg)](https://github.com/ultralytics/template/actions/workflows/format.yml) <a href="https://ultralytics.com/discord"><img alt="Discord" src="https://img.shields.io/discord/1089800235347353640?logo=discord&logoColor=white&label=Discord&color=blue"></a>
 
+
+
 ## 🗂 Repository Structure
 
 The repository is meticulously organized to offer intuitive navigation and a clear understanding of the project components:
