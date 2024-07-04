@@ -13,7 +13,7 @@ def test_add_numbers():
       - Validates that the sum of -1 and 1 equals 0.
 
     Returns:
-      None: This function performs assertions to validate the behavior of add_numbers. It does not return a value.
+      (None): This function performs assertions to validate the behavior of add_numbers. It does not return a value.
 
     Raises:
       AssertionError: If any of the assertions fail, this error is raised indicating a test case failure.
