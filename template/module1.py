@@ -3,26 +3,40 @@
 
 def add_numbers(a, b):
     """
-    Adds two numbers and returns the sum.
+    Adds two numbers together using element-wise addition.
 
     Args:
-        a (float | int): The first number in the addition.
-        b (float | int): The second number in the addition.
+        a (int | float | torch.Tensor): First number or tensor to add.
+        b (int | float | torch.Tensor): Second number or tensor to add.
 
     Returns:
-        (float | int): The sum of `a` and `b`.
-
-    Notes:
-        This function supports both integer and floating-point numbers. The returned value will match the type of the input
-        values unless they're mixed, in which case a float is returned.
+        (int | float | torch.Tensor): Sum of the input numbers or tensors. If inputs are tensors, returns a tensor of
+            the same shape.
 
     Examples:
-        ```python
-        result = add_numbers(3, 5)
-        assert result == 8
-
-        result = add_numbers(3.5, 2)
-        assert result == 5.5
-        ```
+        >>> result = add_numbers(1, 2)  # returns 3
+        >>> x = torch.tensor([1, 2])
+        >>> y = torch.tensor([3, 4])
+        >>> result = add_numbers(x, y)  # returns tensor([4, 6])
     """
     return a + b
+
+
+def main():
+    """
+    Main entry point for the Ultralytics YOLO application.
+
+    Executes a simple addition operation by calling the add_numbers function with predefined values. This function
+    serves as a basic demonstration of program flow and function calling within the Ultralytics framework.
+
+    Examples:
+        >>> main()  # Runs the main function which adds 1 + 2
+    """
+    a = 1
+    b = 2
+    y = add_numbers(a, b)
+    print(f"Added {a} + {b} = {y}")
+
+
+if __name__ == "__main__":
+    main()

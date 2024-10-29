@@ -19,7 +19,7 @@
 # For comprehensive documentation and usage instructions, visit: https://docs.ultralytics.com
 
 [build-system]
-requires = ["setuptools>=43.0.0", "wheel"]
+requires = ["setuptools>=70.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 # Project settings -----------------------------------------------------------------------------------------------------
@@ -57,14 +57,16 @@ classifiers = [# Optional, for a list of valid classifiers, see https://pypi.org
 ]
 
 # Required dependencies ------------------------------------------------------------------------------------------------
-dependencies = [# Optional
-    "ultralytics",
+dependencies = [
     "numpy",
 ]
 
 # Optional dependencies ------------------------------------------------------------------------------------------------
-[project.optional-dependencies] # Optional
-tests = ["pytest"]
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "mkdocs",
+]
 
 [project.urls]  # Optional
 "Homepage" = "https://ultralytics.com"
@@ -73,8 +75,8 @@ tests = ["pytest"]
 "Bug Reports" = "https://github.com/ultralytics/template/issues"
 "Changelog" = "https://github.com/ultralytics/template/releases"
 
-# [project.scripts]  # Optional
-# sample = "sample:main"  # executes the function `main` from this package when "sample" is called.
+[project.scripts]  # Optional
+example-cli-command = "template.module1:main"  # executes `template.module1.main` when "example-cli-command" is run from CLI
 
 # Tools settings -------------------------------------------------------------------------------------------------------
 [tool.setuptools]  # configuration specific to the `setuptools` build backend.
