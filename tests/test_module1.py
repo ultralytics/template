@@ -1,6 +1,6 @@
 # Ultralytics YOLO 🚀, AGPL-3.0 License https://ultralytics.com/license
 
-from module1 import add_numbers
+from template.module1 import add_numbers
 
 
 def test_add_numbers():
