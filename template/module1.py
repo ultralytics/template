@@ -24,7 +24,7 @@ def add_numbers(a, b):
 
 def main():
     """
-    Main entry point for the Ultralytics YOLO application.
+    Main entry point for the Ultralytics Template application.
 
     Executes a simple addition operation by calling the add_numbers function with predefined values. This function
     serves as a basic demonstration of program flow and function calling within the Ultralytics framework.
