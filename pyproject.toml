@@ -58,7 +58,6 @@ classifiers = [# Optional, for a list of valid classifiers, see https://pypi.org
 
 # Required dependencies ------------------------------------------------------------------------------------------------
 dependencies = [
-    "ultralytics",
     "numpy",
 ]
 
