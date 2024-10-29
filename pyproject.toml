@@ -73,7 +73,7 @@ tests = ["pytest"]
 "Bug Reports" = "https://github.com/ultralytics/template/issues"
 "Changelog" = "https://github.com/ultralytics/template/releases"
 
-# [project.scripts]  # Optional
+[project.scripts]  # Optional
 sample = "sample:main"  # executes the function `main` from this package when "template sample" is run from CLI
 
 # Tools settings -------------------------------------------------------------------------------------------------------
