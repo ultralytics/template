@@ -12,15 +12,14 @@ on:
     - cron: '0 0 * * *'  # Runs at 00:00 UTC every day
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  Test:
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: ["3.11", "3.12", "3.13"]
-
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
@@ -39,4 +38,3 @@ jobs:
       - name: Run CLI tests
         run: |
           example-cli-command
-
