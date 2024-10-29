@@ -57,14 +57,17 @@ classifiers = [# Optional, for a list of valid classifiers, see https://pypi.org
 ]
 
 # Required dependencies ------------------------------------------------------------------------------------------------
-dependencies = [# Optional
+dependencies = [
     "ultralytics",
     "numpy",
 ]
 
 # Optional dependencies ------------------------------------------------------------------------------------------------
-[project.optional-dependencies] # Optional
-tests = ["pytest"]
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "mkdocs",
+]
 
 [project.urls]  # Optional
 "Homepage" = "https://ultralytics.com"
@@ -74,7 +77,7 @@ tests = ["pytest"]
 "Changelog" = "https://github.com/ultralytics/template/releases"
 
 [project.scripts]  # Optional
-sample = "sample:main"  # executes the function `main` from this package when "template sample" is run from CLI
+example-cli-command = "template.module1:main"  # executes `template.module1.main` when "example-cli-command" is run from CLI
 
 # Tools settings -------------------------------------------------------------------------------------------------------
 [tool.setuptools]  # configuration specific to the `setuptools` build backend.
