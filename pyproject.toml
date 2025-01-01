@@ -88,6 +88,10 @@ package-data = { "sample" = ["*.yaml"] }
 [tool.setuptools.dynamic]
 version = { attr = "template.__version__" }
 
+[tool.pytest.ini_options]
+addopts = "--doctest-modules --durations=30 --color=yes"
+norecursedirs = [".git", "dist", "build"]
+
 [tool.ruff]
 line-length = 120
 
