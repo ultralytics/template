@@ -2,7 +2,7 @@
 
 # Continuous Integration (CI) GitHub Actions tests
 
-name: Template CI
+name: CI
 
 on:
   push:
@@ -37,6 +37,8 @@ jobs:
       - name: Run Python tests
         run: |
           python -m pytest tests -v
+          # Or use unittest package to eliminate pytest dependency:
+          # python -m unittest discover tests -v 
 
       - name: Run CLI tests
         run: |
