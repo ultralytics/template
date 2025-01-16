@@ -36,7 +36,7 @@ jobs:
 
       - name: Run Python tests
         run: |
-          python -m pytest tests/test_module1.py -v
+          python -m pytest tests -v
 
       - name: Run CLI tests
         run: |
