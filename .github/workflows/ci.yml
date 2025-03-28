@@ -40,7 +40,7 @@ jobs:
         run: |
           python -m pytest tests -v
           # Or use unittest package to eliminate pytest dependency:
-          # python -m unittest discover tests -v 
+          # python -m unittest discover tests -v
 
       - name: Run CLI tests
         run: |
