@@ -6,8 +6,8 @@ This directory contains the documentation for the [Ultralytics](https://github.c
 
 ## 📖 Overview
 
--   **MkDocs Configuration:** The primary configuration file for MkDocs is `mkdocs.yml`. This file defines the structure, navigation, and settings of our project documentation. You can learn more about [MkDocs configuration options](https://www.mkdocs.org/user-guide/configuration/).
--   **Documentation Files:** All documentation content is written in [Markdown](https://www.markdownguide.org/basic-syntax/), a lightweight markup language. These files reside within this `docs/` directory and are organized according to the structure defined in `mkdocs.yml`.
+- **MkDocs Configuration:** The primary configuration file for MkDocs is `mkdocs.yml`. This file defines the structure, navigation, and settings of our project documentation. You can learn more about [MkDocs configuration options](https://www.mkdocs.org/user-guide/configuration/).
+- **Documentation Files:** All documentation content is written in [Markdown](https://www.markdownguide.org/basic-syntax/), a lightweight markup language. These files reside within this `docs/` directory and are organized according to the structure defined in `mkdocs.yml`.
 
 ## 🚀 Getting Started
 

@@ -14,16 +14,16 @@ Welcome to the Ultralytics Python Project Template! This repository provides a s
 
 This template is meticulously organized for intuitive navigation and a clear understanding of project components. Familiarize yourself with the [Python project structure best practices](https://realpython.com/python-application-layouts/) to make the most of this layout.
 
--   `src/` or `your_package_name/`: Contains the core source code of your Python package, organized into modules. Using a `src` layout is a common practice detailed in [Python packaging guides](https://packaging.python.org/en/latest/tutorials/packaging-projects/#configuring-metadata).
--   `tests/`: Dedicated directory for unit tests and integration tests, crucial for implementing [continuous testing](https://docs.ultralytics.com/help/CI/) practices. Consider using frameworks like [pytest](https://docs.pytest.org/en/stable/) for writing tests.
--   `docs/`: (Optional) Houses project documentation. Tools like [Sphinx](https://www.sphinx-doc.org/en/master/) can be used to generate comprehensive documentation from this directory.
--   `pyproject.toml`: The standard configuration file for Python projects, detailing dependencies, build system requirements, formatting rules, and packaging information as specified by [PEP 518](https://peps.python.org/pep-0518/) and subsequent PEPs.
--   `.gitignore`: Configured to exclude unnecessary files (like `*.pyc` or virtual environment directories) from [Git](https://git-scm.com/) tracking.
--   `LICENSE`: Specifies the open-source license (defaulting to AGPL-3.0) under which the project is released.
--   `.github/workflows/`: Contains [GitHub Actions](https://docs.github.com/en/actions) workflows for automating Continuous Integration and Continuous Deployment (CI/CD) processes. Learn more about [CI/CD concepts](https://www.redhat.com/en/topics/devops/what-is-ci-cd).
--   `.pre-commit-config.yaml`: (Optional) Configuration for [pre-commit hooks](https://pre-commit.com/) to automatically check and enforce code quality standards before commits.
--   `Dockerfile`: (Optional) Defines instructions for building a [Docker](https://www.docker.com/) container image, enabling [containerization](https://www.ultralytics.com/glossary/containerization) of the project environment for consistent deployment.
--   `environment.yml`: (Optional, for Conda users) Manages dependencies for [Conda environments](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
+- `src/` or `your_package_name/`: Contains the core source code of your Python package, organized into modules. Using a `src` layout is a common practice detailed in [Python packaging guides](https://packaging.python.org/en/latest/tutorials/packaging-projects/#configuring-metadata).
+- `tests/`: Dedicated directory for unit tests and integration tests, crucial for implementing [continuous testing](https://docs.ultralytics.com/help/CI/) practices. Consider using frameworks like [pytest](https://docs.pytest.org/en/stable/) for writing tests.
+- `docs/`: (Optional) Houses project documentation. Tools like [Sphinx](https://www.sphinx-doc.org/en/master/) can be used to generate comprehensive documentation from this directory.
+- `pyproject.toml`: The standard configuration file for Python projects, detailing dependencies, build system requirements, formatting rules, and packaging information as specified by [PEP 518](https://peps.python.org/pep-0518/) and subsequent PEPs.
+- `.gitignore`: Configured to exclude unnecessary files (like `*.pyc` or virtual environment directories) from [Git](https://git-scm.com/) tracking.
+- `LICENSE`: Specifies the open-source license (defaulting to AGPL-3.0) under which the project is released.
+- `.github/workflows/`: Contains [GitHub Actions](https://docs.github.com/en/actions) workflows for automating Continuous Integration and Continuous Deployment (CI/CD) processes. Learn more about [CI/CD concepts](https://www.redhat.com/en/topics/devops/what-is-ci-cd).
+- `.pre-commit-config.yaml`: (Optional) Configuration for [pre-commit hooks](https://pre-commit.com/) to automatically check and enforce code quality standards before commits.
+- `Dockerfile`: (Optional) Defines instructions for building a [Docker](https://www.docker.com/) container image, enabling [containerization](https://www.ultralytics.com/glossary/containerization) of the project environment for consistent deployment.
+- `environment.yml`: (Optional, for Conda users) Manages dependencies for [Conda environments](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
 
 ```plaintext
 your-project/
@@ -81,9 +81,9 @@ Kickstart your new Python project using this template with these steps:
 
 For Ultralytics team members and external contributors:
 
--   Clone the newly created repository based on this template to start working on the project locally.
--   Ensure the `README.md` is updated to accurately reflect the project's purpose, usage, and specifics.
--   Remove or modify optional components (like `Dockerfile`, `environment.yml`) based on the project's deployment and dependency management strategy.
+- Clone the newly created repository based on this template to start working on the project locally.
+- Ensure the `README.md` is updated to accurately reflect the project's purpose, usage, and specifics.
+- Remove or modify optional components (like `Dockerfile`, `environment.yml`) based on the project's deployment and dependency management strategy.
 
 With this template, Ultralytics aims to foster a culture of excellence and uniformity in Python software development, ensuring every project starts on a solid foundation aligned with industry standards and organizational best practices. For insights into managing ML projects, explore our [MLOps guide](https://www.ultralytics.com/glossary/machine-learning-operations-mlops).
 
@@ -91,10 +91,10 @@ With this template, Ultralytics aims to foster a culture of excellence and unifo
 
 Ultralytics thrives on community collaboration, and we deeply value your contributions! Whether it's reporting bugs, suggesting features, or submitting code changes, your involvement is crucial.
 
--   **Reporting Issues**: Encounter a bug? Please report it on [GitHub Issues](https://github.com/ultralytics/template/issues).
--   **Feature Requests**: Have an idea for improvement? Share it via [GitHub Issues](https://github.com/ultralytics/template/issues).
--   **Pull Requests**: Want to contribute code? Please read our [Contributing Guide](https://docs.ultralytics.com/help/contributing/) first, then submit a Pull Request.
--   **Feedback**: Share your thoughts and experiences by participating in our official [Survey](https://www.ultralytics.com/survey?utm_source=github&utm_medium=social&utm_campaign=Survey).
+- **Reporting Issues**: Encounter a bug? Please report it on [GitHub Issues](https://github.com/ultralytics/template/issues).
+- **Feature Requests**: Have an idea for improvement? Share it via [GitHub Issues](https://github.com/ultralytics/template/issues).
+- **Pull Requests**: Want to contribute code? Please read our [Contributing Guide](https://docs.ultralytics.com/help/contributing/) first, then submit a Pull Request.
+- **Feedback**: Share your thoughts and experiences by participating in our official [Survey](https://www.ultralytics.com/survey?utm_source=github&utm_medium=social&utm_campaign=Survey).
 
 A heartfelt thank you 🙏 goes out to all our contributors! Your efforts help make Ultralytics tools better for everyone.
 
@@ -104,8 +104,8 @@ A heartfelt thank you 🙏 goes out to all our contributors! Your efforts help m
 
 Ultralytics offers two licensing options to accommodate diverse needs:
 
--   **AGPL-3.0 License**: Ideal for students, researchers, and enthusiasts passionate about open collaboration and knowledge sharing. This [OSI-approved](https://opensource.org/license/agpl-v3) open-source license promotes transparency and community involvement. See the [LICENSE](LICENSE) file for details.
--   **Enterprise License**: Designed for commercial applications, this license permits the seamless integration of Ultralytics software and AI models into commercial products and services, bypassing the copyleft requirements of AGPL-3.0. For commercial use cases, please inquire about an [Ultralytics Enterprise License](https://www.ultralytics.com/license).
+- **AGPL-3.0 License**: Ideal for students, researchers, and enthusiasts passionate about open collaboration and knowledge sharing. This [OSI-approved](https://opensource.org/license/agpl-v3) open-source license promotes transparency and community involvement. See the [LICENSE](LICENSE) file for details.
+- **Enterprise License**: Designed for commercial applications, this license permits the seamless integration of Ultralytics software and AI models into commercial products and services, bypassing the copyleft requirements of AGPL-3.0. For commercial use cases, please inquire about an [Ultralytics Enterprise License](https://www.ultralytics.com/license).
 
 ## 📮 Contact
 
