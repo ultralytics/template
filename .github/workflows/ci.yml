@@ -4,6 +4,9 @@
 
 name: CI
 
+permissions:
+  contents: read # Read code in PRs
+
 on:
   push:
     branches: [main]
