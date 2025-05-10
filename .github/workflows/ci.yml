@@ -46,11 +46,11 @@ jobs:
 
       - name: Option 3 - Python tests with pytest coverage
         run: |
-          python -m pytest tests -v --cov=./ --cov-report=xml
+          python -m pytest tests -v --cov=./ --cov-report=xml:pytest-coverage.xml
           
       - name: Option 4 - Python tests with unittest coverage
         run: |
-          python -m coverage run --source=./ -m unittest discover tests -v && python -m coverage xml
+          python -m coverage run --source=./ -m unittest discover tests -v && python -m coverage xml -o unittest-coverage.xml
 
       - name: Run CLI tests
         run: |
@@ -60,7 +60,7 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage.xml  # optional
+          files: ./pytest-coverage.xml,./unittest-coverage.xml  # optional (default = coverage.xml)
           flags: template_coverage # optional
           fail_ci_if_error: True  # optional (default = false)
           verbose: false  # optional (default = false)
