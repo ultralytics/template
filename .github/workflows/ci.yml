@@ -63,4 +63,4 @@ jobs:
           files: ./coverage.xml  # optional
           flags: template_coverage # optional
           fail_ci_if_error: True  # optional (default = false)
-          verbose: true  # optional (default = false)
+          verbose: false  # optional (default = false)
