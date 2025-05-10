@@ -3,6 +3,8 @@
 # Continuous Integration (CI) GitHub Actions tests
 
 name: CI
+permissions:
+  contents: read
 
 on:
   push:
