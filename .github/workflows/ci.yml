@@ -3,8 +3,9 @@
 # Continuous Integration (CI) GitHub Actions tests
 
 name: CI
+
 permissions:
-  contents: read
+  contents: read # Read code in PRs
 
 on:
   push:
