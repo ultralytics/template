@@ -55,3 +55,12 @@ jobs:
       - name: Run CLI tests
         run: |
           example-cli-command
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage.xml  # optional
+          flags: template_coverage # optional
+          fail_ci_if_error: True  # optional (default = false)
+          verbose: true  # optional (default = false)
