@@ -67,6 +67,8 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest",
+    "pytest-cov",  # coverage with pytest
+    "coverage",  # coverage with unittest
     "mkdocs",
 ]
 
