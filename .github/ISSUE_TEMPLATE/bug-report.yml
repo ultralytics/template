@@ -63,7 +63,7 @@ body:
         - Package version (e.g., pip list | grep ultralytics)
         - Hardware (e.g., CPU, GPU model)
         - Any relevant environment details
-        
+
         Example:
         ```
         OS: macOS-13.5.2
