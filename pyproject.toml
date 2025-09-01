@@ -28,7 +28,7 @@ name = "template"  # Required
 dynamic = ["version"]
 description = "Ultralytics Template Python Package"  # Optional
 readme = "README.md"  # Optional
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 license = { file = "LICENSE" }
 keywords = ["Ultralytics", "Template"]  # Optional
 authors = [
@@ -44,7 +44,6 @@ classifiers = [# Optional, for a list of valid classifiers, see https://pypi.org
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
