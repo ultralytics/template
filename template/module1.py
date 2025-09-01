@@ -1,7 +1,7 @@
 # Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
 
 
-def add_numbers(a, b):
+def add_numbers(a: int | float, b: int | float) -> int | float:
     """
     Adds two numbers together using element-wise addition.
 
@@ -22,7 +22,7 @@ def add_numbers(a, b):
     return a + b
 
 
-def main():
+def main() -> None:
     """
     Main entry point for the Ultralytics Template application.
 

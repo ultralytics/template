@@ -3,7 +3,7 @@
 from template.module1 import add_numbers, main
 
 
-def test_add_numbers():
+def test_add_numbers() -> None:
     """
     Tests the add_numbers function with positive and negative integer inputs.
 
@@ -20,6 +20,6 @@ def test_add_numbers():
     assert add_numbers(-1, -1) == -2
 
 
-def test_main():
+def test_main() -> None:
     """Tests main function executes without errors."""
     main()
