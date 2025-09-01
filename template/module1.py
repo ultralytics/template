@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+
 def add_numbers(a: int | float, b: int | float) -> int | float:
     """
     Adds two numbers together using element-wise addition.
