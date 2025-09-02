@@ -95,13 +95,23 @@ norecursedirs = [".git", "dist", "build"]
 
 [tool.ruff]
 line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["UP"]  # enables Python-upgrade rules
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.docformatter]
 wrap-summaries = 120
 wrap-descriptions = 120
-in-place = true
 pre-summary-newline = true
 close-quotes-on-newline = true
+in-place = true
 
 [tool.codespell]
 ignore-words-list = "crate,nd,strack,dota,ane,segway,fo,gool,winn,commend"
