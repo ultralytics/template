@@ -29,12 +29,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          if [ "${{ github.event.inputs.simulate_success }}" = "true" ]; then
-            echo "Simulating success"
-            exit 0
-          else
+          if [ "${{ github.event.inputs.simulate_success || 'true' }}" = "false" ]; then
             echo "Simulating failure"
             exit 1
+          else
+            echo "Simulating success"
+            exit 0
           fi
 
   notify:
