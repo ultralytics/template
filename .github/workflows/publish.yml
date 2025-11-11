@@ -130,9 +130,8 @@ jobs:
         env:
           STATUS: ${{ needs.publish.result == 'success' && '✅' || '❌' }}
           MESSAGE: ${{ needs.publish.result == 'success' && format('NEW `{0} {1}` pip package published 😃', github.repository, needs.check.outputs.current_tag) || github.event_name }}
-          PR_INFO: ${{ github.event.head_commit.message }}
         with:
           webhook-type: incoming-webhook
           webhook: ${{ secrets.SLACK_WEBHOOK_URL_YOLO }}
           payload: |
-            text: "<!channel> GitHub Actions ${{ needs.publish.result == 'success' && 'success' || 'error' }} for ${{ github.workflow }} ${{ env.STATUS }}\n\n\n*Repository:* https://github.com/${{ github.repository }}\n*Action:* https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\n*Author:* ${{ github.actor }}\n*Event:* ${{ env.MESSAGE }}\n*Job Status:* ${{ job.status }}\n*Commit:* ${{ env.PR_INFO }}\n"
+            text: "<!channel> GitHub Actions ${{ needs.publish.result == 'success' && 'success' || 'error' }} for ${{ github.workflow }} ${{ env.STATUS }}\n\n\n*Repository:* https://github.com/${{ github.repository }}\n*Action:* https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\n*Author:* ${{ github.actor }}\n*Event:* ${{ env.MESSAGE }}\n*Job Status:* ${{ job.status }}\n*Commit:* <https://github.com/${{ github.repository }}/commit/${{ github.sha }}|${{ github.event.head_commit.message }}>\n"
