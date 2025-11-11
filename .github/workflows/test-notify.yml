@@ -19,6 +19,7 @@ jobs:
       increment: "True"
       current_tag: v1.0.0
       previous_tag: v0.9.9
+      pypi_url: https://pypi.org/p/ultralytics-template
     steps:
       - run: echo "Mock check job"
 
@@ -45,7 +46,7 @@ jobs:
       - name: Notify Slack
         uses: slackapi/slack-github-action@v2.1.1
         env:
-          TITLE: ${{ needs.mock_publish.result == 'success' && format('<!channel> <https://github.com/{0}/actions/runs/{1}|GitHub Actions> {2} {3} for {4} ✅\nNEW `{0} {5}` <https://pypi.org/p/{6}|package> published 😃', github.repository, github.run_id, github.event_name, job.status, github.workflow, needs.mock_check.outputs.current_tag, replace(github.repository, '/', '-')) || format('<!channel> <https://github.com/{0}/actions/runs/{1}|GitHub Actions> {2} {3} for {4} ❌', github.repository, github.run_id, github.event_name, job.status, github.workflow) }}
+          TITLE: ${{ needs.mock_publish.result == 'success' && format('<!channel> <https://github.com/{0}/actions/runs/{1}|GitHub Actions> {2} {3} for {4} ✅\nNEW `{0} {5}` <{6}|package> published 😃', github.repository, github.run_id, github.event_name, job.status, github.workflow, needs.mock_check.outputs.current_tag, needs.mock_check.outputs.pypi_url) || format('<!channel> <https://github.com/{0}/actions/runs/{1}|GitHub Actions> {2} {3} for {4} ❌', github.repository, github.run_id, github.event_name, job.status, github.workflow) }}
         with:
           webhook-type: incoming-webhook
           webhook: ${{ secrets.SLACK_WEBHOOK_URL_YOLO }}
