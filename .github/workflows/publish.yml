@@ -23,6 +23,7 @@ jobs:
       increment: ${{ steps.check_pypi.outputs.increment }}
       current_tag: ${{ steps.check_pypi.outputs.current_tag }}
       previous_tag: ${{ steps.check_pypi.outputs.previous_tag }}
+      pypi_url: https://pypi.org/p/ultralytics-template
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
@@ -82,7 +83,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: # for GitHub Deployments tab
       name: Release - PyPI
-      url: https://pypi.org/p/ultralytics-template
+      url: ${{ needs.check.outputs.pypi_url }}
     permissions:
       id-token: write # for PyPI trusted publishing
     steps:
@@ -128,8 +129,7 @@ jobs:
       - name: Notify Slack
         uses: slackapi/slack-github-action@v2.1.1
         env:
-          PYPI_URL: https://pypi.org/p/${{ replace(github.repository, '/', '-') }}
-          TITLE: ${{ needs.publish.result == 'success' && format('<!channel> <https://github.com/{0}/actions/runs/{1}|GitHub Actions> {2} {3} for {4} ✅\nNEW `{0} {5}` <https://pypi.org/p/{6}|package> published 😃', github.repository, github.run_id, github.event_name, job.status, github.workflow, needs.check.outputs.current_tag, replace(github.repository, '/', '-')) || format('<!channel> <https://github.com/{0}/actions/runs/{1}|GitHub Actions> {2} {3} for {4} ❌', github.repository, github.run_id, github.event_name, job.status, github.workflow) }}
+          TITLE: ${{ needs.publish.result == 'success' && format('<!channel> <https://github.com/{0}/actions/runs/{1}|GitHub Actions> {2} {3} for {4} ✅\nNEW `{0} {5}` <{6}|package> published 😃', github.repository, github.run_id, github.event_name, job.status, github.workflow, needs.check.outputs.current_tag, needs.check.outputs.pypi_url) || format('<!channel> <https://github.com/{0}/actions/runs/{1}|GitHub Actions> {2} {3} for {4} ❌', github.repository, github.run_id, github.event_name, job.status, github.workflow) }}
         with:
           webhook-type: incoming-webhook
           webhook: ${{ secrets.SLACK_WEBHOOK_URL_YOLO }}
