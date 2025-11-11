@@ -50,6 +50,6 @@ jobs:
           TITLE: ${{ needs.mock_publish.result == 'success' && format('<!channel> <https://github.com/{0}/actions/runs/{1}|GitHub Actions> {2} {3} for {4} ✅\nNEW `{0} {5}` <{6}|package> published 😃', github.repository, github.run_id, github.event_name, job.status, github.workflow, needs.mock_check.outputs.current_tag, needs.mock_check.outputs.pypi_url) || format('<!channel> <https://github.com/{0}/actions/runs/{1}|GitHub Actions> {2} {3} for {4} ❌', github.repository, github.run_id, github.event_name, job.status, github.workflow) }}
         with:
           webhook-type: incoming-webhook
-          webhook: ${{ secrets.SLACK_WEBHOOK_URL_YOLO }}
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL_LLM }}
           payload: |
             text: "${{ env.TITLE }}\n\n\n*Repository:* https://github.com/${{ github.repository }}\n*Author:* ${{ github.actor }}\n*<https://github.com/${{ github.repository }}/commit/${{ github.sha }}|Commit>:* ${{ github.event.head_commit.message }}\n"
