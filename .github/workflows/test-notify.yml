@@ -11,7 +11,7 @@ on:
       simulate_success:
         type: boolean
         description: Simulate success (true) or failure (false)
-        default: true
+        default: false
 
 jobs:
   mock_check:
