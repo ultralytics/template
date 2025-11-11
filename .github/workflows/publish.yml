@@ -125,26 +125,14 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Extract PR Number
-        id: pr
-        run: |
-          PR_NUM=$(echo "${{ github.event.head_commit.message }}" | grep -oP '\(#\K\d+(?=\)$)' || echo "N/A")
-          PR_TITLE=$(echo "${{ github.event.head_commit.message }}" | sed 's/ (#[0-9]\+)$//')
-          echo "number=${PR_NUM}" >> $GITHUB_OUTPUT
-          echo "title=${PR_TITLE}" >> $GITHUB_OUTPUT
-      - name: Notify Success
-        if: needs.publish.result == 'success' && github.event_name == 'push'
+      - name: Notify Slack
         uses: slackapi/slack-github-action@v2.1.1
+        env:
+          STATUS: ${{ needs.publish.result == 'success' && '✅' || '❌' }}
+          MESSAGE: ${{ needs.publish.result == 'success' && format('NEW `{0} {1}` pip package published 😃', github.repository, needs.check.outputs.current_tag) || github.event_name }}
+          PR_INFO: ${{ github.event.head_commit.message }}
         with:
           webhook-type: incoming-webhook
           webhook: ${{ secrets.SLACK_WEBHOOK_URL_YOLO }}
           payload: |
-            text: "<!channel> GitHub Actions success for ${{ github.workflow }} ✅\n\n\n*Repository:* https://github.com/${{ github.repository }}\n*Action:* https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\n*Author:* ${{ github.actor }}\n*Event:* NEW `${{ github.repository }} ${{ needs.check.outputs.current_tag }}` pip package published 😃\n*Job Status:* ${{ job.status }}\n*Pull Request:* <https://github.com/${{ github.repository }}/pull/${{ steps.pr.outputs.number }}> ${{ steps.pr.outputs.title }}\n"
-      - name: Notify Failure
-        if: needs.publish.result != 'success'
-        uses: slackapi/slack-github-action@v2.1.1
-        with:
-          webhook-type: incoming-webhook
-          webhook: ${{ secrets.SLACK_WEBHOOK_URL_YOLO }}
-          payload: |
-            text: "<!channel> GitHub Actions error for ${{ github.workflow }} ❌\n\n\n*Repository:* https://github.com/${{ github.repository }}\n*Action:* https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\n*Author:* ${{ github.actor }}\n*Event:* ${{ github.event_name }}\n*Job Status:* ${{ job.status }}\n*Pull Request:* <https://github.com/${{ github.repository }}/pull/${{ steps.pr.outputs.number }}> ${{ steps.pr.outputs.title }}\n"
+            text: "<!channel> GitHub Actions ${{ needs.publish.result == 'success' && 'success' || 'error' }} for ${{ github.workflow }} ${{ env.STATUS }}\n\n\n*Repository:* https://github.com/${{ github.repository }}\n*Action:* https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\n*Author:* ${{ github.actor }}\n*Event:* ${{ env.MESSAGE }}\n*Job Status:* ${{ job.status }}\n*Commit:* ${{ env.PR_INFO }}\n"
