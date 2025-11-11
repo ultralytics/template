@@ -5,6 +5,7 @@
 name: Test Notify
 
 on:
+  push:
   workflow_dispatch:
     inputs:
       simulate_success:
