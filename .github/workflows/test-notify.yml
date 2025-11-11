@@ -1,0 +1,53 @@
+# Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
+
+# Test Slack notification logic
+
+name: Test Notify
+
+on:
+  workflow_dispatch:
+    inputs:
+      simulate_success:
+        type: boolean
+        description: Simulate success (true) or failure (false)
+        default: true
+
+jobs:
+  mock_check:
+    runs-on: ubuntu-latest
+    outputs:
+      increment: "True"
+      current_tag: v1.0.0
+      previous_tag: v0.9.9
+    steps:
+      - run: echo "Mock check job"
+
+  mock_publish:
+    needs: mock_check
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          if [ "${{ github.event.inputs.simulate_success }}" = "true" ]; then
+            echo "Simulating success"
+            exit 0
+          else
+            echo "Simulating failure"
+            exit 1
+          fi
+
+  notify:
+    needs: [mock_check, mock_publish]
+    if: always() && needs.mock_check.outputs.increment == 'True'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Notify Slack
+        uses: slackapi/slack-github-action@v2.1.1
+        env:
+          TITLE: ${{ needs.mock_publish.result == 'success' && format('<!channel> <https://github.com/{0}/actions/runs/{1}|GitHub Actions> {2} {3} for {4} ✅\nNEW `{0} {5}` <https://pypi.org/p/{6}|package> published 😃', github.repository, github.run_id, github.event_name, job.status, github.workflow, needs.mock_check.outputs.current_tag, replace(github.repository, '/', '-')) || format('<!channel> <https://github.com/{0}/actions/runs/{1}|GitHub Actions> {2} {3} for {4} ❌', github.repository, github.run_id, github.event_name, job.status, github.workflow) }}
+        with:
+          webhook-type: incoming-webhook
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL_YOLO }}
+          payload: |
+            text: "${{ env.TITLE }}\n\n\n*Repository:* https://github.com/${{ github.repository }}\n*Author:* ${{ github.actor }}\n*<https://github.com/${{ github.repository }}/commit/${{ github.sha }}|Commit>:* ${{ github.event.head_commit.message }}\n"
