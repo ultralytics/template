@@ -127,11 +127,8 @@ jobs:
     steps:
       - name: Notify Slack
         uses: slackapi/slack-github-action@v2.1.1
-        env:
-          STATUS: ${{ needs.publish.result == 'success' && '✅' || '❌' }}
-          MESSAGE: ${{ needs.publish.result == 'success' && format('NEW `{0} {1}` pip package published 😃', github.repository, needs.check.outputs.current_tag) || github.event_name }}
         with:
           webhook-type: incoming-webhook
           webhook: ${{ secrets.SLACK_WEBHOOK_URL_YOLO }}
           payload: |
-            text: "<!channel> GitHub Actions ${{ needs.publish.result == 'success' && 'success' || 'error' }} for ${{ github.workflow }} ${{ env.STATUS }}\n\n\n*Repository:* https://github.com/${{ github.repository }}\n*Action:* https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\n*Author:* ${{ github.actor }}\n*Event:* ${{ env.MESSAGE }}\n*Job Status:* ${{ job.status }}\n*Commit:* <https://github.com/${{ github.repository }}/commit/${{ github.sha }}|${{ github.event.head_commit.message }}>\n"
+            text: "${{ needs.publish.result == 'success' && format('<!channel> <https://github.com/{0}/actions/runs/{1}|GitHub Actions> {2} {3} for {4} ✅\nNEW `{0} {5}` <https://pypi.org/project/{6}|package> published 😃', github.repository, github.run_id, github.event_name, job.status, github.workflow, needs.check.outputs.current_tag, github.event.repository.name) || format('<!channel> <https://github.com/{0}/actions/runs/{1}|GitHub Actions> {2} {3} for {4} ❌', github.repository, github.run_id, github.event_name, job.status, github.workflow) }}\n\n\n*Repository:* https://github.com/${{ github.repository }}\n*Author:* ${{ github.actor }}\n*<https://github.com/${{ github.repository }}/commit/${{ github.sha }}|Commit>:* ${{ github.event.head_commit.message }}\n"
