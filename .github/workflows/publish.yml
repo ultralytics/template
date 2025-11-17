@@ -1,0 +1,140 @@
+# Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
+
+# Publish pip package to PyPI https://pypi.org/project/ultralytics-template/
+
+name: Publish to PyPI
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      pypi:
+        type: boolean
+        description: Publish to PyPI
+
+jobs:
+  check:
+    if: github.repository == 'ultralytics/template' && github.actor == 'glenn-jocher'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      increment: ${{ steps.check_pypi.outputs.increment }}
+      current_tag: ${{ steps.check_pypi.outputs.current_tag }}
+      previous_tag: ${{ steps.check_pypi.outputs.previous_tag }}
+      pypi_url: https://pypi.org/p/ultralytics-template
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+      - uses: astral-sh/setup-uv@v7
+      - run: uv pip install --system --no-cache ultralytics-actions
+      - id: check_pypi
+        shell: python
+        run: |
+          import os
+          from actions.utils import check_pypi_version
+          local_version, online_version, publish = check_pypi_version()
+          os.system(f'echo "increment={publish}" >> $GITHUB_OUTPUT')
+          os.system(f'echo "current_tag=v{local_version}" >> $GITHUB_OUTPUT')
+          os.system(f'echo "previous_tag=v{online_version}" >> $GITHUB_OUTPUT')
+          if publish:
+              print('Ready to publish new version to PyPI ✅.')
+      - name: Tag and Release
+        if: steps.check_pypi.outputs.increment == 'True'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CURRENT_TAG: ${{ steps.check_pypi.outputs.current_tag }}
+          PREVIOUS_TAG: ${{ steps.check_pypi.outputs.previous_tag }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          git config --global user.name "UltralyticsAssistant"
+          git config --global user.email "web@ultralytics.com"
+          git tag -a "$CURRENT_TAG" -m "$(git log -1 --pretty=%B)"
+          git push origin "$CURRENT_TAG"
+          ultralytics-actions-summarize-release
+          uv cache prune --ci
+
+  build:
+    needs: check
+    if: needs.check.outputs.increment == 'True'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+      - uses: astral-sh/setup-uv@v7
+      - run: uv pip install --system --no-cache build
+      - run: python -m build
+      - uses: actions/upload-artifact@v5
+        with:
+          name: dist
+          path: dist/
+      - run: uv cache prune --ci
+
+  publish:
+    needs: [check, build]
+    if: needs.check.outputs.increment == 'True'
+    runs-on: ubuntu-latest
+    environment: # for GitHub Deployments tab
+      name: Release - PyPI
+      url: ${{ needs.check.outputs.pypi_url }}
+    permissions:
+      id-token: write # for PyPI trusted publishing
+    steps:
+      - uses: actions/download-artifact@v6
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+
+  sbom:
+    needs: [check, build, publish]
+    if: needs.check.outputs.increment == 'True'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+      - uses: astral-sh/setup-uv@v7
+      - run: |
+          uv venv sbom-env
+          uv pip install -e .
+        env:
+          VIRTUAL_ENV: sbom-env
+      - uses: anchore/sbom-action@v0
+        with:
+          format: spdx-json
+          output-file: sbom.spdx.json
+          path: sbom-env
+      - run: gh release upload ${{ needs.check.outputs.current_tag }} sbom.spdx.json
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  notify:
+    needs: [check, publish]
+    if: always() && needs.check.outputs.increment == 'True'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Get short SHA
+        id: sha
+        run: echo "short=${GITHUB_SHA:0:7}" >> $GITHUB_OUTPUT
+      - name: Notify Slack
+        uses: slackapi/slack-github-action@v2.1.1
+        env:
+          TITLE: ${{ needs.publish.result == 'success' && format('<!channel> <https://github.com/{0}/actions/runs/{1}|GitHub Actions> {2} {3} for {4} ✅\nNEW `{0} {5}` <{6}|package> published 😃', github.repository, github.run_id, github.event_name, needs.publish.result, github.workflow, needs.check.outputs.current_tag, needs.check.outputs.pypi_url) || format('<!channel> <https://github.com/{0}/actions/runs/{1}|GitHub Actions> {2} {3} for {4} ❌', github.repository, github.run_id, github.event_name, needs.publish.result, github.workflow) }}
+        with:
+          webhook-type: incoming-webhook
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL_YOLO }}
+          payload: |
+            text: "${{ env.TITLE }}\n\n\n*Repository:* https://github.com/${{ github.repository }}\n*Author:* ${{ github.actor }}\n*Commit:* <https://github.com/${{ github.repository }}/commit/${{ github.sha }}|${{ steps.sha.outputs.short }}> ${{ github.event.head_commit.message }}\n"
