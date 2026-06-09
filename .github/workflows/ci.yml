@@ -6,6 +6,7 @@ name: CI
 
 permissions:
   contents: read # Read code in PRs
+  id-token: write # Required for Codecov OIDC authentication
 
 on:
   push:
@@ -62,6 +63,9 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v7
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./pytest-coverage.xml,./unittest-coverage.xml # optional (default = coverage.xml)
           flags: template_coverage # optional
+          use_oidc: true
+          fail_ci_if_error: true
+          disable_search: true
+          plugins: noop
