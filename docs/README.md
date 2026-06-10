@@ -2,20 +2,28 @@
 
 # Documentation Directory (`docs/`)
 
-This directory contains the documentation for the [Ultralytics](https://github.com/ultralytics/ultralytics) project, built and managed using [MkDocs](https://www.mkdocs.org/).
+This directory contains optional documentation for the [Ultralytics](https://github.com/ultralytics) Python project
+template. It currently provides Markdown starter content; add a MkDocs configuration before serving or building a
+documentation site with [MkDocs](https://www.mkdocs.org/).
 
 ## 📖 Overview
 
-- **MkDocs Configuration:** The primary configuration file for MkDocs is `mkdocs.yml`. This file defines the structure, navigation, and settings of our project documentation. You can learn more about [MkDocs configuration options](https://www.mkdocs.org/user-guide/configuration/).
-- **Documentation Files:** All documentation content is written in [Markdown](https://www.markdownguide.org/basic-syntax/), a lightweight markup language. These files reside within this `docs/` directory and are organized according to the structure defined in `mkdocs.yml`.
+- **MkDocs Configuration:** Add `mkdocs.yml` at the repository root when this template grows into a MkDocs site. That file
+  defines the navigation and settings for project documentation. You can learn more about [MkDocs configuration options](https://www.mkdocs.org/user-guide/configuration/).
+- **Documentation Files:** Documentation content is written in [Markdown](https://www.markdownguide.org/basic-syntax/), a
+  lightweight markup language. Store project guides in this `docs/` directory and organize them through `mkdocs.yml` if
+  you add a MkDocs site.
 
 ## 🚀 Getting Started
 
 To work with the documentation locally:
 
-1.  **Install MkDocs:** Ensure MkDocs and its necessary extensions are installed in your Python environment. Follow the [MkDocs installation guide](https://www.mkdocs.org/user-guide/installation/) if you haven't already.
-2.  **Preview Documentation:** Navigate to the root directory of this repository in your terminal and run the command `mkdocs serve`. This starts a local development server, allowing you to preview the documentation site in your web browser, typically at `http://127.0.0.1:8000/`. The site will automatically reload when you save changes to the documentation files or the configuration.
-3.  **Build Documentation:** To generate the static HTML site (usually for deployment), use the `mkdocs build` command. This creates a `site/` directory containing the built documentation. For more details on commands, see the [MkDocs CLI documentation](https://www.mkdocs.org/user-guide/cli/).
+1.  **Install Documentation Tools:** Install the template's development extras with `pip install -e ".[dev]"`, or follow the
+    [MkDocs installation guide](https://www.mkdocs.org/user-guide/installation/) for a custom setup.
+2.  **Preview Markdown:** Use your editor's Markdown preview while this directory contains standalone Markdown files.
+    After adding `mkdocs.yml`, run `mkdocs serve` from the repository root to preview the site locally.
+3.  **Build Documentation:** After adding a MkDocs configuration, use `mkdocs build` to generate a static `site/`
+    directory. For more details on commands, see the [MkDocs CLI documentation](https://www.mkdocs.org/user-guide/cli/).
 
 The documentation should be continuously updated alongside the project's development to maintain clarity, accuracy, and usefulness for both internal developers and external users exploring the [Ultralytics Docs](https://docs.ultralytics.com/).
 
