@@ -47,7 +47,7 @@ your-project/
 ├── .github/                    # GitHub Actions workflows
 │   └── workflows/
 │       ├── ci.yml
-|       └── format.yml
+│       └── format.yml
 │
 ├── .gitignore                  # Git ignore rules
 ├── .pre-commit-config.yaml     # Pre-commit hook config (optional)
@@ -112,7 +112,7 @@ Ultralytics offers two licensing options to accommodate diverse needs:
 
 ## 📮 Contact
 
-For bug reports or feature suggestions related to this template or other Ultralytics projects, please use [GitHub Issues](https://github.com/ultralytics/template/issues). For general questions, discussions, and community support, join our [Discord](https://discord.com/invite/ultralytics) server!
+For bug reports or feature suggestions related to this template, please use [GitHub Issues](https://github.com/ultralytics/template/issues). For other Ultralytics projects, please use the issue tracker for the relevant repository. For general questions, discussions, and community support, join our [Discord](https://discord.com/invite/ultralytics) server!
 
 <br>
 <div align="center">
