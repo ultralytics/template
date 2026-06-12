@@ -47,4 +47,4 @@ If you prefer to avoid installing external dependencies, you can use Python's st
 
 ## ✨ Contributing
 
-We love contributions! If you find an issue or have an idea for improving the tests, please feel free to create an issue or submit a pull request. See our [Contributing Guide](https://docs.ultralytics.com/help/contributing/) for more details on how to get started.
+We love contributions! If you find an issue or have an idea for improving the tests, please feel free to create an issue or submit a pull request. See our [Contributing Guide](https://docs.ultralytics.com/help/contributing) for more details on how to get started.

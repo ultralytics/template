@@ -17,7 +17,7 @@ Welcome to the Ultralytics Python Project Template! This repository provides a s
 This template is meticulously organized for intuitive navigation and a clear understanding of project components. Familiarize yourself with the [Python project structure best practices](https://realpython.com/python-application-layouts/) to make the most of this layout.
 
 - `src/` or `your_package_name/`: Contains the core source code of your Python package, organized into modules. Using a `src` layout is a common practice detailed in [Python packaging guides](https://packaging.python.org/en/latest/tutorials/packaging-projects/#configuring-metadata).
-- `tests/`: Dedicated directory for unit tests and integration tests, crucial for implementing [continuous testing](https://docs.ultralytics.com/help/CI/) practices. Consider using frameworks like [pytest](https://docs.pytest.org/en/stable/) for writing tests.
+- `tests/`: Dedicated directory for unit tests and integration tests, crucial for implementing [continuous testing](https://docs.ultralytics.com/help/CI) practices. Consider using frameworks like [pytest](https://docs.pytest.org/en/stable/) for writing tests.
 - `docs/`: (Optional) Houses project documentation. Tools like [MkDocs](https://www.mkdocs.org/) can be used to generate comprehensive documentation from this directory.
 - `pyproject.toml`: The standard configuration file for Python projects, detailing dependencies, build system requirements, formatting rules, and packaging information as specified by [PEP 518](https://peps.python.org/pep-0518/) and subsequent PEPs.
 - `.gitignore`: Configured to exclude unnecessary files (like `*.pyc` or virtual environment directories) from [Git](https://git-scm.com/) tracking.
@@ -96,7 +96,7 @@ Ultralytics thrives on community collaboration, and we deeply value your contrib
 
 - **Reporting Issues**: Encounter a bug? Please report it on [GitHub Issues](https://github.com/ultralytics/template/issues).
 - **Feature Requests**: Have an idea for improvement? Share it via [GitHub Issues](https://github.com/ultralytics/template/issues).
-- **Pull Requests**: Want to contribute code? Please read our [Contributing Guide](https://docs.ultralytics.com/help/contributing/) first, then submit a Pull Request.
+- **Pull Requests**: Want to contribute code? Please read our [Contributing Guide](https://docs.ultralytics.com/help/contributing) first, then submit a Pull Request.
 - **Feedback**: Share your thoughts and experiences by participating in our official [Survey](https://www.ultralytics.com/survey?utm_source=github&utm_medium=social&utm_campaign=Survey).
 
 A heartfelt thank you 🙏 goes out to all our contributors! Your efforts help make Ultralytics tools better for everyone.
