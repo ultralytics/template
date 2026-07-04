@@ -1,0 +1,183 @@
+# Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
+
+# Tag, release, and (optionally) publish pip package to PyPI on version increment
+
+name: Publish to PyPI
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      pypi:
+        type: boolean
+        description: Publish to PyPI
+
+jobs:
+  check:
+    if: github.repository == 'ultralytics/template' && github.actor == 'glenn-jocher'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      increment: ${{ steps.check_version.outputs.increment }}
+      current_tag: ${{ steps.check_version.outputs.current_tag }}
+      previous_tag: ${{ steps.check_version.outputs.previous_tag }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+      - uses: astral-sh/setup-uv@v7
+      - run: uv pip install --system --no-cache ultralytics-actions
+      # This template gates on __version__ changing in the pushed diff since the 'template' name on
+      # PyPI belongs to an unrelated package. When publishing your own package, replace this step
+      # with the PyPI version check used in
+      # https://github.com/ultralytics/mkdocs/blob/main/.github/workflows/publish.yml:
+      #
+      # - id: check_pypi
+      #   shell: python
+      #   run: |
+      #     import os
+      #     from actions.utils import check_pypi_version
+      #     local_version, online_version, publish = check_pypi_version()
+      #     os.system(f'echo "increment={publish}" >> $GITHUB_OUTPUT')
+      #     os.system(f'echo "current_tag=v{local_version}" >> $GITHUB_OUTPUT')
+      #     os.system(f'echo "previous_tag=v{online_version}" >> $GITHUB_OUTPUT')
+      #     if publish:
+      #         print('Ready to publish new version to PyPI ✅.')
+      - id: check_version
+        env:
+          BASE: ${{ github.event.before }}
+        run: |
+          if [ -z "$BASE" ] || ! git cat-file -e "$BASE" 2>/dev/null; then
+            BASE=$(git rev-parse HEAD~1)
+          fi
+          OLD_VERSION=$(git show "$BASE:template/__init__.py" | sed -n 's/^__version__ = "\(.*\)"$/\1/p')
+          NEW_VERSION=$(python -c 'import template; print(template.__version__)')
+          if [ "$NEW_VERSION" != "$OLD_VERSION" ]; then
+            INCREMENT=True
+            echo "Version changed $OLD_VERSION → $NEW_VERSION, ready to tag and release ✅."
+          else
+            INCREMENT=False
+          fi
+          {
+            echo "increment=$INCREMENT"
+            echo "current_tag=v$NEW_VERSION"
+            echo "previous_tag=v$OLD_VERSION"
+          } >> "$GITHUB_OUTPUT"
+      - name: Tag and Release
+        if: steps.check_version.outputs.increment == 'True'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CURRENT_TAG: ${{ steps.check_version.outputs.current_tag }}
+          PREVIOUS_TAG: ${{ steps.check_version.outputs.previous_tag }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          git config --global user.name "UltralyticsAssistant"
+          git config --global user.email "web@ultralytics.com"
+          git tag -a "$CURRENT_TAG" -m "$(git log -1 --pretty=%B)"
+          git push origin "$CURRENT_TAG"
+          ultralytics-actions-summarize-release
+          uv cache prune --ci
+
+  build:
+    needs: check
+    if: needs.check.outputs.increment == 'True'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+      - uses: astral-sh/setup-uv@v7
+      - run: uv pip install --system --no-cache build
+      - run: python -m build
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+      - run: uv cache prune --ci
+
+  publish:
+    needs: [check, build]
+    if: needs.check.outputs.increment == 'True'
+    runs-on: ubuntu-latest
+    # To publish to PyPI: rename the package in pyproject.toml, set up PyPI trusted publishing
+    # (https://docs.pypi.org/trusted-publishers/), then uncomment the lines below.
+    #
+    # environment: # for GitHub Deployments tab
+    #   name: Release - PyPI
+    #   url: https://pypi.org/p/template
+    # permissions:
+    #   id-token: write # for PyPI trusted publishing
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+      # - uses: pypa/gh-action-pypi-publish@release/v1
+
+  sbom:
+    needs: [check, build, publish]
+    if: needs.check.outputs.increment == 'True'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+      - uses: astral-sh/setup-uv@v7
+      - run: |
+          uv venv sbom-env
+          uv pip install -e .
+        env:
+          VIRTUAL_ENV: sbom-env
+      - uses: anchore/sbom-action@v0
+        with:
+          format: spdx-json
+          output-file: sbom.spdx.json
+          path: sbom-env
+      - run: gh release upload ${{ needs.check.outputs.current_tag }} sbom.spdx.json
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  notify:
+    needs: [check, publish]
+    if: always() && needs.check.outputs.increment == 'True'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Get release title
+        id: release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ needs.check.outputs.current_tag }}
+        run: |
+          TITLE=$(gh release view "$TAG" --json name -q .name 2>/dev/null | tr -d '\n\r"\\') || TITLE=""
+          TITLE=$(printf '%s' "$TITLE" | sed -E "s@#([0-9]+)@<https://github.com/$GH_REPO/pull/\1|#\1>@g")
+          echo "title=$TITLE" >> "$GITHUB_OUTPUT"
+      - name: Notify Success
+        if: needs.publish.result == 'success' && github.event_name == 'push'
+        uses: slackapi/slack-github-action@v3.0.3
+        with:
+          webhook-type: incoming-webhook
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL_YOLO }}
+          payload: |
+            text: "<!subteam^S082BPCRAJ3> *${{ github.workflow }}* ✅ `${{ github.repository }}` ${{ steps.release.outputs.title || needs.check.outputs.current_tag }}  <https://github.com/${{ github.repository }}/releases/tag/${{ needs.check.outputs.current_tag }}|*Release*>  ·  <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|*Run*>"
+      - name: Notify Failure
+        if: needs.publish.result != 'success'
+        uses: slackapi/slack-github-action@v3.0.3
+        with:
+          webhook-type: incoming-webhook
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL_YOLO }}
+          payload: |
+            text: "<!subteam^S082BPCRAJ3> *${{ github.workflow }}* ❌ `${{ github.repository }}` ${{ needs.check.outputs.current_tag }}  <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|*Run*>"
