@@ -33,15 +33,15 @@ After opening a PR:
 ## Commands
 
 ```bash
-pip install -e ".[dev]"                            # install for development
+pip install -e ".[dev]" # install for development
 
-pytest tests -v                                    # run tests (pytest)
-pytest tests/test_with_pytest.py::test_add_numbers -v  # run one test
-python -m unittest discover tests -v               # run tests (unittest)
-pytest tests -v --cov=./ --cov-report=xml:pytest-coverage.xml  # coverage (CI command)
-example-cli-command                                # run the example CLI entry point
+pytest tests -v                                               # run tests (pytest)
+pytest tests/test_with_pytest.py::test_add_numbers -v         # run one test
+python -m unittest discover tests -v                          # run tests (unittest)
+pytest tests -v --cov=./ --cov-report=xml:pytest-coverage.xml # coverage (CI command)
+example-cli-command                                           # run the example CLI entry point
 
-ruff format . && ruff check --fix .                # format/lint (config in pyproject.toml)
+ruff format . && ruff check --fix . # format/lint (config in pyproject.toml)
 ```
 
 CI matrix: Python 3.9/3.13/3.14 × ubuntu/macos/windows. CI runs the tests four ways — pytest and unittest, each with and without coverage — plus the CLI entry point, so tests must pass under both runners.
