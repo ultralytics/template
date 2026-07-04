@@ -15,7 +15,7 @@ on:
 
 jobs:
   check:
-    if: github.repository == 'ultralytics/template' && github.actor == 'glenn-jocher'
+    if: github.repository == 'ultralytics/template'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -107,14 +107,15 @@ jobs:
     needs: [check, build]
     if: needs.check.outputs.increment == 'True'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     # To publish to PyPI: rename the package in pyproject.toml, set up PyPI trusted publishing
-    # (https://docs.pypi.org/trusted-publishers/), then uncomment the lines below.
+    # (https://docs.pypi.org/trusted-publishers/), then uncomment the lines below and add
+    # 'id-token: write' to the permissions above.
     #
     # environment: # for GitHub Deployments tab
     #   name: Release - PyPI
     #   url: https://pypi.org/p/template
-    # permissions:
-    #   id-token: write # for PyPI trusted publishing
     steps:
       - uses: actions/download-artifact@v8
         with:
@@ -149,7 +150,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   notify:
-    needs: [check, publish]
+    needs: [check, publish, sbom]
     if: always() && needs.check.outputs.increment == 'True'
     runs-on: ubuntu-latest
     permissions:
@@ -166,7 +167,7 @@ jobs:
           TITLE=$(printf '%s' "$TITLE" | sed -E "s@#([0-9]+)@<https://github.com/$GH_REPO/pull/\1|#\1>@g")
           echo "title=$TITLE" >> "$GITHUB_OUTPUT"
       - name: Notify Success
-        if: needs.publish.result == 'success' && github.event_name == 'push'
+        if: needs.publish.result == 'success' && needs.sbom.result == 'success' && github.event_name == 'push'
         uses: slackapi/slack-github-action@v3.0.3
         with:
           webhook-type: incoming-webhook
@@ -174,7 +175,7 @@ jobs:
           payload: |
             text: "<!subteam^S082BPCRAJ3> *${{ github.workflow }}* ✅ `${{ github.repository }}` ${{ steps.release.outputs.title || needs.check.outputs.current_tag }}  <https://github.com/${{ github.repository }}/releases/tag/${{ needs.check.outputs.current_tag }}|*Release*>  ·  <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|*Run*>"
       - name: Notify Failure
-        if: needs.publish.result != 'success'
+        if: needs.publish.result != 'success' || needs.sbom.result != 'success'
         uses: slackapi/slack-github-action@v3.0.3
         with:
           webhook-type: incoming-webhook
