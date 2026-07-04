@@ -45,7 +45,8 @@ your-project/
 ├── .github/                    # GitHub Actions workflows
 │   └── workflows/
 │       ├── ci.yml
-│       └── format.yml
+│       ├── format.yml
+│       └── publish.yml
 │
 ├── .gitignore                  # Git ignore rules
 ├── .pre-commit-config.yaml     # Pre-commit hook config (optional)
