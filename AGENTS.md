@@ -41,7 +41,7 @@ python -m unittest discover tests -v                          # run tests (unitt
 pytest tests -v --cov=./ --cov-report=xml:pytest-coverage.xml # coverage (CI command)
 example-cli-command                                           # run the example CLI entry point
 
-ruff format . && ruff check --fix . # format/lint (config in pyproject.toml)
+ruff format . && ruff check --fix . # format/lint (pip install ruff; config in pyproject.toml)
 ```
 
 CI matrix: Python 3.9/3.13/3.14 × ubuntu/macos/windows. CI runs the tests four ways — pytest and unittest, each with and without coverage — plus the CLI entry point, so tests must pass under both runners.
