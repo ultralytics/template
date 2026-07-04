@@ -15,7 +15,7 @@ on:
 
 jobs:
   check:
-    if: github.repository == 'ultralytics/template' && github.actor == 'glenn-jocher' && github.ref == 'refs/heads/main'
+    if: github.repository == 'ultralytics/template' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
