@@ -83,6 +83,8 @@ jobs:
             git config --global user.email "web@ultralytics.com"
             git tag -a "$CURRENT_TAG" -m "$(git log -1 --pretty=%B)"
             git push origin "$CURRENT_TAG"
+          fi
+          if ! gh release view "$CURRENT_TAG" >/dev/null 2>&1; then
             ultralytics-actions-summarize-release
           fi
           uv cache prune --ci
