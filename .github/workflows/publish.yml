@@ -15,6 +15,7 @@ on:
 
 jobs:
   check:
+    # Templates omit the github.actor maintainer gate that product repos keep for security; forks add their own.
     if: github.repository == 'ultralytics/template' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
@@ -51,6 +52,7 @@ jobs:
       - id: check_version
         env:
           BASE: ${{ github.event.before }}
+          PYPI_DISPATCH: ${{ github.event.inputs.pypi }}
         run: |
           if [ -z "$BASE" ] || ! git cat-file -e "$BASE" 2>/dev/null; then
             BASE=$(git rev-parse HEAD~1)
@@ -60,7 +62,7 @@ jobs:
           if [ "$NEW_VERSION" != "$OLD_VERSION" ] && [ -z "$(git tag -l "v$NEW_VERSION")" ]; then
             INCREMENT=True
             echo "Version changed $OLD_VERSION → $NEW_VERSION, ready to tag and release ✅."
-          elif [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+          elif [ "$PYPI_DISPATCH" = "true" ]; then
             INCREMENT=True # manual recovery re-run for v$NEW_VERSION after a partial failure
           else
             INCREMENT=False
