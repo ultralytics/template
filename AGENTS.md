@@ -48,7 +48,7 @@ CI matrix: Python 3.9/3.13/3.14 × ubuntu/macos/windows. CI runs the tests four 
 
 ## Architecture
 
-This is the Ultralytics template for new Python packages — a minimal, fully wired example meant to be copied and adapted. `template/` is the package: `__init__.py` holds `__version__` (read by setuptools dynamic versioning in `pyproject.toml`), and `module1.py` holds the example `add_numbers()`/`main()` backing the `example-cli-command` entry point in `[project.scripts]`. `tests/` demonstrates the same tests in both pytest style (`test_with_pytest.py`) and unittest style (`test_with_unittest.py`). `format.yml` runs Ultralytics Actions on PRs (Ruff, Prettier, codespell, link checks, AI labels/summaries) and commits fixes back to the PR branch.
+This is the Ultralytics template for new Python packages — a minimal, fully wired example meant to be copied and adapted. `template/` is the package: `__init__.py` holds `__version__` (read by setuptools dynamic versioning in `pyproject.toml`), and `module1.py` holds the example `add_numbers()`/`main()` backing the `example-cli-command` entry point in `[project.scripts]`. `tests/` demonstrates the same tests in both pytest style (`test_with_pytest.py`) and unittest style (`test_with_unittest.py`). `format.yml` runs Ultralytics Actions on PRs (Ruff, Prettier, codespell, link checks, AI labels/summaries) and commits fixes back to the PR branch. `publish.yml` tags, releases, and (optionally) publishes to PyPI when `__version__` is bumped on `main`; its `check` job intentionally omits the `github.actor` maintainer gate that product repos keep for security, because a fork supplies its own.
 
 ## Conventions
 
