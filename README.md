@@ -16,7 +16,7 @@ Welcome to the Ultralytics Python Project Template! This repository provides a s
 
 This template is meticulously organized for intuitive navigation and a clear understanding of project components. Familiarize yourself with the [Python project structure best practices](https://realpython.com/python-application-layouts/) to make the most of this layout.
 
-- `src/` or `your_package_name/`: Contains the core source code of your Python package, organized into modules. Using a `src` layout is a common practice detailed in [Python packaging guides](https://packaging.python.org/en/latest/tutorials/packaging-projects/#configuring-metadata).
+- `your_package_name/` (here `template/`) or `src/`: Contains the core source code of your Python package, organized into modules. The alternative `src` layout is detailed in [Python packaging guides](https://packaging.python.org/en/latest/tutorials/packaging-projects/#configuring-metadata).
 - `tests/`: Dedicated directory for unit tests and integration tests, crucial for implementing [continuous testing](https://docs.ultralytics.com/help/CI) practices. Consider using frameworks like [pytest](https://docs.pytest.org/en/stable/) for writing tests.
 - `docs/`: (Optional) Houses project documentation. Tools like [MkDocs](https://www.mkdocs.org/) can be used to generate comprehensive documentation from this directory.
 - `pyproject.toml`: The standard configuration file for Python projects, detailing dependencies, build system requirements, formatting rules, and packaging information as specified by [PEP 518](https://peps.python.org/pep-0518/) and subsequent PEPs.
@@ -33,13 +33,11 @@ your-project/
 ├── your_package_name/          # Or src/ for src-layout
 │   ├── __init__.py
 │   ├── module1.py
-│   ├── module2.py
 │   └── ...
 │
-├── tests/                      # Test suite
-│   ├── __init__.py
-│   ├── test_module1.py
-│   └── ...
+├── tests/                      # Test suite (pytest + unittest examples)
+│   ├── test_with_pytest.py
+│   └── test_with_unittest.py
 │
 ├── docs/                       # Documentation files (optional)
 │   └── ...
@@ -58,9 +56,9 @@ your-project/
 └── README.md                   # This file
 ```
 
-### 📦 Source Code Directory (`src/` or `your_package_name/`)
+### 📦 Source Code Directory (`your_package_name/` or `src/`)
 
-The `src/` or `your_package_name/` directory is the heart of your project, containing the Python code that constitutes your package. Adopting a structured layout promotes clean imports and simplifies testing and packaging.
+The `your_package_name/` or `src/` directory is the heart of your project, containing the Python code that constitutes your package. Adopting a structured layout promotes clean imports and simplifies testing and packaging.
 
 ### 🧪 Testing Directory (`tests/`)
 
