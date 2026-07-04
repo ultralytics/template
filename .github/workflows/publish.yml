@@ -15,7 +15,7 @@ on:
 
 jobs:
   check:
-    if: github.repository == 'ultralytics/template'
+    if: github.repository == 'ultralytics/template' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -57,7 +57,7 @@ jobs:
           fi
           OLD_VERSION=$(git show "$BASE:template/__init__.py" | sed -n 's/^__version__ = "\(.*\)"$/\1/p')
           NEW_VERSION=$(python -c 'import template; print(template.__version__)')
-          if [ "$NEW_VERSION" != "$OLD_VERSION" ]; then
+          if [ "$NEW_VERSION" != "$OLD_VERSION" ] && [ -z "$(git tag -l "v$NEW_VERSION")" ]; then
             INCREMENT=True
             echo "Version changed $OLD_VERSION → $NEW_VERSION, ready to tag and release ✅."
           else
