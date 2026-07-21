@@ -13,6 +13,10 @@ on:
         type: boolean
         description: Publish to PyPI
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
 jobs:
   check:
     # Templates omit the github.actor maintainer gate that product repos keep for security; forks add their own.
