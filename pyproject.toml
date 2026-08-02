@@ -11,7 +11,7 @@
 # - [tool.*]: Configures settings for various tools (pytest, yapf, etc.) used in the project.
 
 # Installation:
-# The Template library can be installed using the command: 'pip install git+https://TOKEN:x-oauth-basic@github.com/ultralytics/template.git@main'
+# The Template library can be installed using the command: 'pip install git+https://github.com/ultralytics/template.git'
 # For development purposes, you can install the package in editable mode with: 'pip install -e .'
 # This approach allows for real-time code modifications without the need for re-installation.
 
@@ -85,7 +85,6 @@ example-cli-command = "template.module1:main"  # executes `template.module1.main
 # Tools settings -------------------------------------------------------------------------------------------------------
 [tool.setuptools]  # configuration specific to the `setuptools` build backend.
 packages = { find = { where = ["."], include = ["template", "template.*"] } }
-package-data = { "sample" = ["*.yaml"] }
 
 [tool.setuptools.dynamic]
 version = { attr = "template.__version__" }
@@ -95,8 +94,7 @@ addopts = "--doctest-modules --durations=30 --color=yes"
 norecursedirs = [".git", "dist", "build"]
 
 [tool.ruff]
-line-length = 120
-target-version = "py310"
+line-length = 120  # target-version is inferred from project.requires-python
 
 [tool.ruff.lint]
 select = ["UP"]  # enables Python-upgrade rules
