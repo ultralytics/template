@@ -75,7 +75,6 @@ dev = [
 [project.urls]  # Optional
 "Homepage" = "https://ultralytics.com"
 "Source" = "https://github.com/ultralytics/template"
-"Documentation" = "https://docs.ultralytics.com"
 "Bug Reports" = "https://github.com/ultralytics/template/issues"
 "Changelog" = "https://github.com/ultralytics/template/releases"
 
@@ -104,7 +103,3 @@ docstring-code-format = true
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
-
-[tool.codespell]
-ignore-words-list = "crate,nd,strack,dota,ane,segway,fo,gool,winn,commend"
-skip = '*.csv,*venv*,docs/??/,docs/mkdocs_??.yml'
