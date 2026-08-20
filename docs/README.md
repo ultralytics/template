@@ -1,4 +1,4 @@
-<a href="https://www.ultralytics.com/"><img src="https://raw.githubusercontent.com/ultralytics/assets/main/logo/Ultralytics_Logotype_Original.svg" width="320" alt="Ultralytics logo"></a>
+<a href="https://www.ultralytics.com"><img src="https://raw.githubusercontent.com/ultralytics/assets/main/logo/Ultralytics_Logotype_Original.svg" width="320" alt="Ultralytics logo"></a>
 
 # Documentation Directory (`docs/`)
 
@@ -25,8 +25,8 @@ To work with the documentation locally:
 3.  **Build Documentation:** After adding a MkDocs configuration, use `mkdocs build` to generate a static `site/`
     directory. For more details on commands, see the [MkDocs CLI documentation](https://www.mkdocs.org/user-guide/cli/).
 
-The documentation should be continuously updated alongside the project's development to maintain clarity, accuracy, and usefulness for both internal developers and external users exploring the [Ultralytics Docs](https://docs.ultralytics.com/).
+The documentation should be continuously updated alongside the project's development to maintain clarity, accuracy, and usefulness for both internal developers and external users exploring the [Ultralytics Docs](https://docs.ultralytics.com).
 
 ## 🙌 Contributing
 
-Contributions to improve the documentation are welcome! Whether it's fixing typos, clarifying explanations, adding examples, or translating content, your help is valuable. Please see our [Contributing Guide](https://docs.ultralytics.com/help/contributing) for more details on how to get started. You can also find helpful [tips for contributing to Ultralytics open-source projects](https://www.ultralytics.com/blog/tips-to-start-contributing-to-ultralytics-open-source-projects) on our blog or ask questions on the [Ultralytics Community Forums](https://community.ultralytics.com/).
+Contributions to improve the documentation are welcome! Whether it's fixing typos, clarifying explanations, adding examples, or translating content, your help is valuable. Please see our [Contributing Guide](https://docs.ultralytics.com/help/contributing) for more details on how to get started. You can also find helpful [tips for contributing to Ultralytics open-source projects](https://www.ultralytics.com/blog/tips-to-start-contributing-to-ultralytics-open-source-projects) on our blog or ask questions on the [Ultralytics Community Forums](https://community.ultralytics.com).

@@ -1,15 +1,15 @@
-<a href="https://www.ultralytics.com/"><img src="https://raw.githubusercontent.com/ultralytics/assets/main/logo/Ultralytics_Logotype_Original.svg" width="320" alt="Ultralytics logo"></a>
+<a href="https://www.ultralytics.com"><img src="https://raw.githubusercontent.com/ultralytics/assets/main/logo/Ultralytics_Logotype_Original.svg" width="320" alt="Ultralytics logo"></a>
 
 # 🛠 Ultralytics Python Project Template
 
-Welcome to the Ultralytics Python Project Template! This repository provides a standardized foundation for initiating Python projects at [Ultralytics](https://www.ultralytics.com/). It incorporates best practices in project structure, configuration, and essential tooling to streamline development. By using this template, Ultralytics developers can ensure consistency, maintain high quality standards, and accelerate the setup process for new Python-based software. Explore our [Ultralytics Solutions](https://www.ultralytics.com/solutions) to see how we apply these standards in real-world applications.
+Welcome to the Ultralytics Python Project Template! This repository provides a standardized foundation for initiating Python projects at [Ultralytics](https://www.ultralytics.com). It incorporates best practices in project structure, configuration, and essential tooling to streamline development. By using this template, Ultralytics developers can ensure consistency, maintain high quality standards, and accelerate the setup process for new Python-based software. Explore our [Ultralytics Solutions](https://www.ultralytics.com/solutions) to see how we apply these standards in real-world applications.
 
 [![Template CI](https://github.com/ultralytics/template/actions/workflows/ci.yml/badge.svg)](https://github.com/ultralytics/template/actions/workflows/ci.yml)
 [![Ultralytics Actions](https://github.com/ultralytics/template/actions/workflows/format.yml/badge.svg)](https://github.com/ultralytics/template/actions/workflows/format.yml)
 [![codecov](https://codecov.io/github/ultralytics/template/branch/main/graph/badge.svg)](https://app.codecov.io/github/ultralytics/template)
 
 [![Ultralytics Discord](https://img.shields.io/discord/1089800235347353640?logo=discord&logoColor=white&label=Discord&color=blue)](https://discord.com/invite/ultralytics)
-[![Ultralytics Forums](https://img.shields.io/discourse/users?server=https%3A%2F%2Fcommunity.ultralytics.com&logo=discourse&label=Forums&color=blue)](https://community.ultralytics.com/)
+[![Ultralytics Forums](https://img.shields.io/discourse/users?server=https%3A%2F%2Fcommunity.ultralytics.com&logo=discourse&label=Forums&color=blue)](https://community.ultralytics.com)
 [![Ultralytics Reddit](https://img.shields.io/reddit/subreddit-subscribers/ultralytics?style=flat&logo=reddit&logoColor=white&label=Reddit&color=blue)](https://reddit.com/r/ultralytics)
 
 ## 🗂️ Repository Structure
@@ -67,7 +67,7 @@ The `tests/` directory is crucial for ensuring code reliability and robustness. 
 
 ### 📚 Documentation Directory (`docs/`)
 
-For projects requiring detailed documentation beyond the README, the `docs/` directory is the designated space. Utilizing tools like [Sphinx](https://www.sphinx-doc.org/en/master/) allows for the generation of professional, high-quality documentation from reStructuredText or Markdown files. Check out the [Ultralytics Docs](https://docs.ultralytics.com/) for an example.
+For projects requiring detailed documentation beyond the README, the `docs/` directory is the designated space. Utilizing tools like [Sphinx](https://www.sphinx-doc.org/en/master/) allows for the generation of professional, high-quality documentation from reStructuredText or Markdown files. Check out the [Ultralytics Docs](https://docs.ultralytics.com) for an example.
 
 ## ✨ Starting a New Project
 
