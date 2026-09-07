@@ -4,8 +4,6 @@ This file provides guidance to AI coding agents (Claude Code, etc.) when working
 
 ## Core Principles (CRITICAL)
 
-**PyPI releases:** Ultralytics-owned packages must use three-number `MAJOR.MINOR.PATCH` versions only; increment the patch number, never add suffixes or bypass version guards.
-
 **Less is more. The simplest solution is the best solution.** The action hierarchy for every change: **Delete > Replace > Add**.
 
 1. **Solve at the owner**: Put behavior in the code path that owns or observes it. For fixes, never guard a symptom with a staleness check, initialization flag, skip-first-call branch, or `try/except` around broken logic; relocate the trigger and delete the wrong path. For features, extend the existing owner rather than creating a parallel abstraction.
@@ -50,5 +48,6 @@ This is the Ultralytics template for new Python packages — a minimal, fully wi
 
 ## Conventions
 
+- Ultralytics-owned PyPI packages use `MAJOR.MINOR.PATCH` versions only; no suffixes.
 - License headers (`# Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license`) are added automatically by Ultralytics Actions — don't add or revert them manually.
 - Google-style docstrings, `from __future__ import annotations` for modern type hints, line length 120; formatting is auto-applied by `format.yml`.
