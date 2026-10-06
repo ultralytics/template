@@ -32,11 +32,8 @@ jobs:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v7
-        with:
-          python-version: "3.x"
       - uses: ultralytics/actions/setup-uv@main
-      - run: uv pip install --system --no-cache ultralytics-actions
+      - run: uv pip install --no-cache ultralytics-actions
       # This template gates on __version__ changing in the pushed diff since the 'template' name on
       # PyPI belongs to an unrelated package. When publishing your own package, replace this step
       # with the PyPI version check used in
@@ -103,12 +100,8 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
-        with:
-          python-version: "3.x"
       - uses: ultralytics/actions/setup-uv@main
-      - run: uv pip install --system --no-cache build
-      - run: python -m build
+      - run: uv build
       - uses: actions/upload-artifact@v7
         with:
           name: dist
@@ -143,20 +136,15 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
-        with:
-          python-version: "3.x"
       - uses: ultralytics/actions/setup-uv@main
-      - run: |
-          uv venv sbom-env
-          uv pip install -e .
-        env:
-          VIRTUAL_ENV: sbom-env
+      - run: uv pip install -e .
       - uses: anchore/sbom-action@v0
         with:
           format: spdx-json
           output-file: sbom.spdx.json
-          path: sbom-env
+          path: ${{ env.VIRTUAL_ENV }}
+        env:
+          SYFT_SOURCE_NAME: ${{ github.repository }} # name the SBOM after the repo, not the venv path
       - run: gh release upload ${{ needs.check.outputs.current_tag }} sbom.spdx.json --clobber
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
