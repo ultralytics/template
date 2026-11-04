@@ -40,7 +40,7 @@ example-cli-command                                           # run the example 
 ruff format . && ruff check --fix . # format/lint (uv pip install ruff; config in pyproject.toml)
 ```
 
-CI matrix: Python 3.9/3.13/3.14 × ubuntu/macos/windows. CI runs the tests four ways — pytest and unittest, each with and without coverage — plus the CLI entry point, so tests must pass under both runners.
+CI matrix: Python 3.9/3.13/3.15 × ubuntu/macos/windows. CI runs the tests four ways — pytest and unittest, each with and without coverage — plus the CLI entry point, so tests must pass under both runners.
 
 ## Architecture
 
